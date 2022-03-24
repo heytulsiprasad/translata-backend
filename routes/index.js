@@ -3,12 +3,20 @@ const router = express.Router();
 
 const { translateText, detectLanguage } = require("../utils")
 
-/* GET home page. */
+/**
+ * Server is working
+ */
+
 router.get('/', async function (req, res, next) {
   return res.json({ server: "ok" })
 });
 
-// Get translated data
+/**
+ * Get translated data
+ * @param {string} text - The text that is to be translated
+ * @param {string} targetLang - The language that text should be translated into
+ */
+
 router.post("/translate", (req, res) => {
   const text = req.body.text;
   const targetLang = req.body.targetLang || "en"; // By default translate to english
@@ -30,7 +38,11 @@ router.post("/translate", (req, res) => {
   return;
 })
 
-// Get translated data
+/**
+ * Detect which language user sent
+ * @param {string} text - The text that is to be detected for langugage
+ */
+
 router.post("/detect", (req, res) => {
   const text = req.body.text;
 
